@@ -24,7 +24,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
     "styled-components": "^4.0.2"
   }
 }
