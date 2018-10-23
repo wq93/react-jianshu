@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "react-transition-group": "^2.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,6 +24,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "react-router-dom": "^4.3.1",
     "styled-components": "^4.0.2"
   }
 }
