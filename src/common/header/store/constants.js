@@ -1,3 +1,5 @@
-export const SEARCH_FOCUS = 'header/search_focus'
+export const SEARCH_FOCUS = 'HEADER/SEARCH_FOCUS'
 
-export const SEARCH_BLUR = 'header/search_blur'
+export const SEARCH_BLUR = 'HEADER/SEARCH_BLUR'
+
+export const CHANGE_LIST ='header/CHANGE_LIST';
