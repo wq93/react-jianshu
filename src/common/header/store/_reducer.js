@@ -17,7 +17,6 @@ export default (state = defaultState, action) => {
       return state.set('focused', false)
       break;
     case constants.CHANGE_LIST:
-      console.log(action.data)
       return state.set('list', action.data)
       break;
   }

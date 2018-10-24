@@ -6,6 +6,7 @@ const changeList = (data) => ({
   type: constants.CHANGE_LIST,
   data: fromJS(data),
 })
+
 export const searchFocus = () => ({
   type: constants.SEARCH_FOCUS
 })
