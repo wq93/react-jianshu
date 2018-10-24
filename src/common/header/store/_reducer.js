@@ -20,7 +20,11 @@ export default (state = defaultState, action) => {
       return state.set('focused', false)
       break;
     case constants.CHANGE_LIST:
-      return state.set('list', action.data).set('totalPage', action.totalPage)
+      // return state.set('list', action.data).set('totalPage', action.totalPage)
+      return state.merge({
+        list: action.data,
+        totalPage: action.totalPage,
+      })
       break;
     case constants.MOUSE_ENTER:
       return state.set('mouseIn', true)

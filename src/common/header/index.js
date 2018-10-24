@@ -69,7 +69,8 @@ class Header extends Component {
 
   getListArea = () => {
     const {focused, list, page, totalPage, handleMouseEnter, handleMouseLeave, mouseIn, handleChangePage} = this.props
-    const filterList = list.slice((page - 1) * 10, page * 10)
+    const filterList = list.toJS().slice((page - 1) * 10, page * 10) // toJS immutable数据转js数据
+
     if (focused || mouseIn) {
       return (
         <SearchInfo
@@ -78,18 +79,21 @@ class Header extends Component {
         >
           <SearchInfoTitle>热门搜索
             <SearchInfoSwitch onClick={() => {
-              handleChangePage(page, totalPage)
+              handleChangePage(page, totalPage, this.spinIcon)
             }}>
-              <i className="iconfont spin">&#xe851;</i>换一批
+              <i ref={(icon) => {
+                this.spinIcon = icon
+              }} className="iconfont spin">&#xe851;</i>换一批
             </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             {
-              filterList.map(item => {
-                return (
-                  <SearchInfoItem key={item}>{item}</SearchInfoItem>
-                )
-              })
+              filterList.length > 0 ?
+                filterList.map(item => {
+                  return (
+                    <SearchInfoItem key={item}>{item}</SearchInfoItem>
+                  )
+                }) : ''
             }
           </SearchInfoList>
         </SearchInfo>
@@ -126,7 +130,16 @@ const mapDispathToProps = (dispatch) => {
     handleMouseLeave() {
       dispatch(actionCreators.mouseLeave())
     },
-    handleChangePage(page, totalPage) {
+    handleChangePage(page, totalPage, spin) {
+
+      // 先获取元素的角度再重置
+      let originAngle = spin.style.transform.replace(/[^0-9]/ig, '');
+      if (originAngle) {
+        originAngle = parseInt(originAngle, 10);
+      } else {
+        originAngle = 0;
+      }
+      spin.style.transform = 'rotate(' + (originAngle + 360) + 'deg)';
       if (page < totalPage) {
         page++
       } else {
