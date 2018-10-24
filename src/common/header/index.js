@@ -68,18 +68,24 @@ class Header extends Component {
   }
 
   getListArea = () => {
-    const {focused, list} = this.props
-    if (focused) {
+    const {focused, list, page, totalPage, handleMouseEnter, handleMouseLeave, mouseIn, handleChangePage} = this.props
+    const filterList = list.slice((page - 1) * 10, page * 10)
+    if (focused || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <SearchInfoTitle>热门搜索
-            <SearchInfoSwitch>
+            <SearchInfoSwitch onClick={() => {
+              handleChangePage(page, totalPage)
+            }}>
               <i className="iconfont spin">&#xe851;</i>换一批
             </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             {
-              list.map(item => {
+              filterList.map(item => {
                 return (
                   <SearchInfoItem key={item}>{item}</SearchInfoItem>
                 )
@@ -98,7 +104,10 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     focused: state.getIn(['header', 'focused']),
-    list: state.getIn(['header', 'list'])
+    list: state.getIn(['header', 'list']),
+    page: state.getIn(['header', 'page']),
+    totalPage: state.getIn(['header', 'totalPage']),
+    mouseIn: state.getIn(['header', 'mouseIn']),
   }
 }
 
@@ -110,6 +119,20 @@ const mapDispathToProps = (dispatch) => {
     },
     handleInputBlur() {
       dispatch(actionCreators.searchBlur())
+    },
+    handleMouseEnter() {
+      dispatch(actionCreators.mouseEnter())
+    },
+    handleMouseLeave() {
+      dispatch(actionCreators.mouseLeave())
+    },
+    handleChangePage(page, totalPage) {
+      if (page < totalPage) {
+        page++
+      } else {
+        page = 1
+      }
+      dispatch(actionCreators.changePage(page))
     }
   }
 }
