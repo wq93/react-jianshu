@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {CSSTransition} from 'react-transition-group';
-import {actionCreators} from '../../store'
+import {actionCreators} from './store'
 import {
   HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, SearchWrapper
 } from './style';
@@ -51,7 +51,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    focused: state.get('focused')
+    focused: state.getIn(['header', 'focused'])
   }
 }
 
