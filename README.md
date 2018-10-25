@@ -53,13 +53,10 @@ render() 生命周期必须定义
 
 - 使用ref 获取dom
 ![image.png](https://upload-images.jianshu.io/upload_images/6541235-9ff50d6e42bc8d8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 异步组件及withRouter路由方法的使用
+[第三方库react-loadable](https://github.com/jamiebuilds/react-loadable)
+- Props,state,render
+当组件的state或者props发生改变的时候,render函数就会重新执行
 
-
-
-
-
-
-
-
-
-
+- redux工作流
+![image.png](https://upload-images.jianshu.io/upload_images/6541235-d00e4c8e08924848.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
